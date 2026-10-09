@@ -18,6 +18,12 @@ targets:
     sources:
       - path: Sources
       - path: Resources
+        excludes:
+          - AppIcon.icon
+        buildPhase: resources
+      # Icon Composer document; Xcode compiles it into the app icon, with fallbacks for older macOS.
+      - path: Resources/AppIcon.icon
+        type: file
         buildPhase: resources
       # Copied as a folder; the app installs it for the user to load into Chrome.
       - path: Extension
@@ -38,4 +44,4 @@ targets:
         CODE_SIGN_STYLE: Manual
         ENABLE_HARDENED_RUNTIME: NO
         ENABLE_APP_SANDBOX: NO
-        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

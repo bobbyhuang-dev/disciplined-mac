@@ -13,8 +13,11 @@
 		30D80980A5F470E0B22EBF9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90901428F67F9DA22D3FEBBF /* ContentView.swift */; };
 		3A761D04CEC38BCD1D2CAB73 /* BrowserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00196DD69CD6A1986494F8E /* BrowserExtension.swift */; };
 		433477A1DD64C104788D57C9 /* BrowserRestarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE293339BC0DBB19DEC40809 /* BrowserRestarter.swift */; };
+		5C39A357691DCBD28D7AAF2F /* Favicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A2C5FF6BFD7287C27A880 /* Favicon.swift */; };
+		6E6E60692F0490D984DAB260 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4D02582720A80A8048DA22 /* SettingsView.swift */; };
 		6F6B96E9426C5D4E3480F833 /* BlockerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EF23F85B5361029FAE098C /* BlockerModel.swift */; };
 		7C799F549DA826225E5DF907 /* BlockerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA44DF819129F867EF8E1B9 /* BlockerHelper.swift */; };
+		822793A7DEEDD7E45AD08384 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = FC1545D23908478BA126AB12 /* AppIcon.icon */; };
 		88D6D7FF044F5636AD26DFE5 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B5367BA8A1681D4081AF4 /* Entry.swift */; };
 		9F4087DD661A9ED54BA22671 /* FirefoxExtension in Resources */ = {isa = PBXBuildFile; fileRef = 97038638B74C8DFB458DD38C /* FirefoxExtension */; };
 		D4BDF9884F25B7A78DF93AB9 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D16845B05CFDE0100893C /* Domain.swift */; };
@@ -22,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		088A2C5FF6BFD7287C27A880 /* Favicon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favicon.swift; sourceTree = "<group>"; };
 		23DC9F12AEC7B3D87AEB7E42 /* Disciplined.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disciplined.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38AD7CCC81859DD2229C647F /* Extension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extension; sourceTree = SOURCE_ROOT; };
 		5E4D16845B05CFDE0100893C /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
@@ -34,7 +38,9 @@
 		97038638B74C8DFB458DD38C /* FirefoxExtension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FirefoxExtension; sourceTree = SOURCE_ROOT; };
 		B00196DD69CD6A1986494F8E /* BrowserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserExtension.swift; sourceTree = "<group>"; };
 		CE293339BC0DBB19DEC40809 /* BrowserRestarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserRestarter.swift; sourceTree = "<group>"; };
+		DA4D02582720A80A8048DA22 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E5EF23F85B5361029FAE098C /* BlockerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerModel.swift; sourceTree = "<group>"; };
+		FC1545D23908478BA126AB12 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -49,7 +55,9 @@
 				76C991AB554A2936EEBF6B24 /* DisciplinedApp.swift */,
 				5E4D16845B05CFDE0100893C /* Domain.swift */,
 				623B5367BA8A1681D4081AF4 /* Entry.swift */,
+				088A2C5FF6BFD7287C27A880 /* Favicon.swift */,
 				8BDFEBC32648E7F4EAF28C75 /* NativeHost.swift */,
+				DA4D02582720A80A8048DA22 /* SettingsView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -57,6 +65,7 @@
 		5E0AB644E50B8138F20EA8E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC1545D23908478BA126AB12 /* AppIcon.icon */,
 				666303766C2134E248570A7C /* apply-blocklist.sh */,
 			);
 			path = Resources;
@@ -140,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				822793A7DEEDD7E45AD08384 /* AppIcon.icon in Resources */,
 				05B555DC06EE6FCF6BF3E7BE /* Extension in Resources */,
 				9F4087DD661A9ED54BA22671 /* FirefoxExtension in Resources */,
 				209D506AF6816A960A54A4E5 /* apply-blocklist.sh in Resources */,
@@ -161,7 +171,9 @@
 				F00F63AF159D39C797455C72 /* DisciplinedApp.swift in Sources */,
 				D4BDF9884F25B7A78DF93AB9 /* Domain.swift in Sources */,
 				88D6D7FF044F5636AD26DFE5 /* Entry.swift in Sources */,
+				5C39A357691DCBD28D7AAF2F /* Favicon.swift in Sources */,
 				1EDC567D7212BE8F69F42DF8 /* NativeHost.swift in Sources */,
+				6E6E60692F0490D984DAB260 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +183,7 @@
 		03C9C82E931DDE57C7F8715B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -251,7 +263,7 @@
 		93A75D60AC9B6739E5BF6AC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;

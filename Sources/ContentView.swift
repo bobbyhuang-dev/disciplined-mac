@@ -14,6 +14,8 @@ struct ContentView: View {
         .frame(width: 380)
         .frame(minHeight: 480, idealHeight: 520)
         .background(.background)
+        // The app's color, for every control (and sheets and popovers, which inherit it).
+        .tint(.indigo)
         .animation(.smooth(duration: 0.25), value: model.helperInstalled)
     }
 }
@@ -49,10 +51,35 @@ private struct MainView: View {
             }
 
             Divider()
-            ExtensionFooter()
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
+            HStack(spacing: 2) {
+                ExtensionFooter()
+                    .layoutPriority(1)
+                Spacer(minLength: 0)
+                SettingsButton()
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
         }
+    }
+}
+
+private struct SettingsButton: View {
+    @State private var hovering = false
+
+    var body: some View {
+        SettingsLink {
+            Label("Settings", systemImage: "gearshape")
+                .labelStyle(.iconOnly)
+                .font(.system(size: 13))
+                .foregroundStyle(.secondary)
+                .frame(width: 32, height: 32)
+                .background(hovering ? AnyShapeStyle(.quaternary.opacity(0.5)) : AnyShapeStyle(.clear),
+                            in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering = $0 }
+        .help("Settings")
     }
 }
 
@@ -391,7 +418,6 @@ private struct Header: View {
             Toggle("", isOn: $model.isBlocking)
                 .toggleStyle(.switch)
                 .controlSize(.large)
-                .tint(.indigo)
                 .labelsHidden()
         }
     }
@@ -503,11 +529,7 @@ private struct DomainRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Text(domain.prefix(1).uppercased())
-                .font(.system(size: 13, weight: .semibold, design: .rounded))
-                .foregroundStyle(.white)
-                .frame(width: 28, height: 28)
-                .background(tint.gradient, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
+            SiteIcon(domain: domain)
                 .saturation(blocking ? 1 : 0.2)
             Text(domain)
                 .font(.system(size: 14))
@@ -533,6 +555,50 @@ private struct DomainRow: View {
         .onHover { hovering = $0 }
         .contextMenu {
             Button("Remove", role: .destructive, action: onRemove)
+        }
+    }
+}
+
+/// The site's favicon on a white tile (so dark icons stay visible in dark mode), or its first letter
+/// if icons are off, until the favicon loads, or if the source has none.
+private struct SiteIcon: View {
+    let domain: String
+    @AppStorage(Favicon.showKey) private var showIcons = true
+    @AppStorage(Favicon.sourceKey) private var source = Favicon.Source.google
+    /// Icons fetched while this row was showing.
+    @State private var loaded: [Favicon.Source: NSImage] = [:]
+
+    private let shape = RoundedRectangle(cornerRadius: 7, style: .continuous)
+
+    var body: some View {
+        let source = showIcons ? self.source : nil
+        // Reading the cache here keeps already-fetched icons from flashing the letter first.
+        let favicon = source.flatMap { loaded[$0] ?? Favicon.cached(domain, from: $0) }
+        ZStack {
+            if let favicon {
+                Image(nsImage: favicon)
+                    .resizable()
+                    .interpolation(.high)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 18, height: 18)
+                    .frame(width: 28, height: 28)
+                    .background(.white, in: shape)
+                    .overlay(shape.strokeBorder(.black.opacity(0.08), lineWidth: 0.5))
+                    .id(source)
+                    .transition(.opacity)
+            } else {
+                Text(domain.prefix(1).uppercased())
+                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .frame(width: 28, height: 28)
+                    .background(tint.gradient, in: shape)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.smooth, value: source)
+        .task(id: source) {
+            guard let source, favicon == nil, let image = await Favicon.load(domain, from: source) else { return }
+            withAnimation(.smooth) { loaded[source] = image }
         }
     }
 
@@ -569,9 +635,9 @@ private struct SetupView: View {
     var body: some View {
         VStack(spacing: 18) {
             Spacer()
-            Image(systemName: "shield.lefthalf.filled")
-                .font(.system(size: 54, weight: .light))
-                .foregroundStyle(.indigo.gradient)
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 88, height: 88)
             VStack(spacing: 6) {
                 Text("One-time setup")
                     .font(.system(size: 22, weight: .bold, design: .rounded))
@@ -593,7 +659,6 @@ private struct SetupView: View {
                 .frame(width: 140, height: 22)
             }
             .buttonStyle(.borderedProminent)
-            .tint(.indigo)
             .controlSize(.large)
             .disabled(model.isWorking)
 

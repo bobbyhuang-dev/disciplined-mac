@@ -20,6 +20,11 @@ struct DisciplinedApp: App {
             }
         }
 
+        Settings {
+            SettingsView()
+        }
+        .windowResizability(.contentSize)
+
         // Always visible while the app is running, so it's obvious whether it's open and easy to quit.
         MenuBarExtra {
             MenuBarMenu()
@@ -34,6 +39,7 @@ struct DisciplinedApp: App {
 private struct MenuBarMenu: View {
     @Environment(BlockerModel.self) private var model
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.openSettings) private var openSettings
 
     var body: some View {
         @Bindable var model = model
@@ -46,6 +52,11 @@ private struct MenuBarMenu: View {
             NSApp.activate(ignoringOtherApps: true)
         }
         .keyboardShortcut("o")
+        Button("Settings…") {
+            openSettings()
+            NSApp.activate(ignoringOtherApps: true)
+        }
+        .keyboardShortcut(",")
         Divider()
         Button("Quit Disciplined") {
             NSApp.terminate(nil)
