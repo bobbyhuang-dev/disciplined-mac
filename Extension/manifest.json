@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Disciplined",
+  "version": "1.0",
+  "description": "Blocks the websites on your Disciplined list.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnbN4/Seg2bic4c0w1KnynD5LL/x2clB88ZdDpYbMwA+qolQzSJ5odud8pFF3S8quBXeF0xUlJcSFE5YR41iT/Lc0EjW8ZcMvCMxgzT5TgdoERk0SU0/hBNU7jykHX2n23xcQCqtbHG3wDZKtXuATL+0QPXe9dFuA+7ZVsMpZVV13CasN9IOmO9CXqEcls+RPkfQT6pMkcPyq0gMxK/g1DlZvVdP1QLznh+njOZKedbPdFeAPfy7P+lNNjs/7tLnPb4t5b25si++vz99lvXwZ5HdNStiojftfawfL5/xXzohbpTFxgR+UxfgSQnR77UP/8BxBgswjZTxhQFcG0HCbJwIDAQAB",
+  "permissions": ["declarativeNetRequest", "nativeMessaging", "alarms"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "web_accessible_resources": [{ "resources": ["blocked.html"], "matches": ["<all_urls>"] }]
+}

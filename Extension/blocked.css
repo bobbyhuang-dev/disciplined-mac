@@ -1,0 +1,52 @@
+:root {
+  --bg: #f7f7fa;
+  --text: #1c1c1e;
+  --secondary: #6e6e73;
+  --accent: #5856d6;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1e;
+    --text: #f2f2f7;
+    --secondary: #98989d;
+    --accent: #7d7aff;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+main {
+  padding: 24px;
+  text-align: center;
+}
+
+.shield {
+  width: 56px;
+  height: 56px;
+  fill: var(--accent);
+  opacity: 0.9;
+}
+
+h1 {
+  margin: 18px 0 6px;
+  font: 600 26px/1.2 ui-rounded, -apple-system, system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+p {
+  margin: 0;
+  color: var(--secondary);
+}

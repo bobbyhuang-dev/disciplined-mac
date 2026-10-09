@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05B555DC06EE6FCF6BF3E7BE /* Extension in Resources */ = {isa = PBXBuildFile; fileRef = 38AD7CCC81859DD2229C647F /* Extension */; };
+		1EDC567D7212BE8F69F42DF8 /* NativeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFEBC32648E7F4EAF28C75 /* NativeHost.swift */; };
+		209D506AF6816A960A54A4E5 /* apply-blocklist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 666303766C2134E248570A7C /* apply-blocklist.sh */; };
+		30D80980A5F470E0B22EBF9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90901428F67F9DA22D3FEBBF /* ContentView.swift */; };
+		3A761D04CEC38BCD1D2CAB73 /* BrowserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00196DD69CD6A1986494F8E /* BrowserExtension.swift */; };
+		433477A1DD64C104788D57C9 /* BrowserRestarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE293339BC0DBB19DEC40809 /* BrowserRestarter.swift */; };
+		6F6B96E9426C5D4E3480F833 /* BlockerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EF23F85B5361029FAE098C /* BlockerModel.swift */; };
+		7C799F549DA826225E5DF907 /* BlockerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA44DF819129F867EF8E1B9 /* BlockerHelper.swift */; };
+		88D6D7FF044F5636AD26DFE5 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B5367BA8A1681D4081AF4 /* Entry.swift */; };
+		9F4087DD661A9ED54BA22671 /* FirefoxExtension in Resources */ = {isa = PBXBuildFile; fileRef = 97038638B74C8DFB458DD38C /* FirefoxExtension */; };
+		D4BDF9884F25B7A78DF93AB9 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D16845B05CFDE0100893C /* Domain.swift */; };
+		F00F63AF159D39C797455C72 /* DisciplinedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C991AB554A2936EEBF6B24 /* DisciplinedApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		23DC9F12AEC7B3D87AEB7E42 /* Disciplined.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disciplined.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38AD7CCC81859DD2229C647F /* Extension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extension; sourceTree = SOURCE_ROOT; };
+		5E4D16845B05CFDE0100893C /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
+		623B5367BA8A1681D4081AF4 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		666303766C2134E248570A7C /* apply-blocklist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "apply-blocklist.sh"; sourceTree = "<group>"; };
+		76C991AB554A2936EEBF6B24 /* DisciplinedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinedApp.swift; sourceTree = "<group>"; };
+		8BDFEBC32648E7F4EAF28C75 /* NativeHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeHost.swift; sourceTree = "<group>"; };
+		8CA44DF819129F867EF8E1B9 /* BlockerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerHelper.swift; sourceTree = "<group>"; };
+		90901428F67F9DA22D3FEBBF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		97038638B74C8DFB458DD38C /* FirefoxExtension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FirefoxExtension; sourceTree = SOURCE_ROOT; };
+		B00196DD69CD6A1986494F8E /* BrowserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserExtension.swift; sourceTree = "<group>"; };
+		CE293339BC0DBB19DEC40809 /* BrowserRestarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserRestarter.swift; sourceTree = "<group>"; };
+		E5EF23F85B5361029FAE098C /* BlockerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		485C18FD1B30AFA4A1853143 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8CA44DF819129F867EF8E1B9 /* BlockerHelper.swift */,
+				E5EF23F85B5361029FAE098C /* BlockerModel.swift */,
+				B00196DD69CD6A1986494F8E /* BrowserExtension.swift */,
+				CE293339BC0DBB19DEC40809 /* BrowserRestarter.swift */,
+				90901428F67F9DA22D3FEBBF /* ContentView.swift */,
+				76C991AB554A2936EEBF6B24 /* DisciplinedApp.swift */,
+				5E4D16845B05CFDE0100893C /* Domain.swift */,
+				623B5367BA8A1681D4081AF4 /* Entry.swift */,
+				8BDFEBC32648E7F4EAF28C75 /* NativeHost.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5E0AB644E50B8138F20EA8E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				666303766C2134E248570A7C /* apply-blocklist.sh */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		961E1233D1A0C000C1506DAF = {
+			isa = PBXGroup;
+			children = (
+				38AD7CCC81859DD2229C647F /* Extension */,
+				97038638B74C8DFB458DD38C /* FirefoxExtension */,
+				5E0AB644E50B8138F20EA8E6 /* Resources */,
+				485C18FD1B30AFA4A1853143 /* Sources */,
+				9BF3576BFC55E2F64225510C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9BF3576BFC55E2F64225510C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23DC9F12AEC7B3D87AEB7E42 /* Disciplined.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0DC5E14C10E11654E2F7DDA6 /* Disciplined */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F344F259290EED32F8DE9401 /* Build configuration list for PBXNativeTarget "Disciplined" */;
+			buildPhases = (
+				CC0464362FF87A682ABF4BBF /* Sources */,
+				08A546FAD8E509ED150992D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Disciplined;
+			packageProductDependencies = (
+			);
+			productName = Disciplined;
+			productReference = 23DC9F12AEC7B3D87AEB7E42 /* Disciplined.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5179050A7E5DA4CA593F933 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0DC5E14C10E11654E2F7DDA6 = {
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 65519E6865D2097E23F7ECDE /* Build configuration list for PBXProject "Disciplined" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 961E1233D1A0C000C1506DAF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9BF3576BFC55E2F64225510C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0DC5E14C10E11654E2F7DDA6 /* Disciplined */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		08A546FAD8E509ED150992D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B555DC06EE6FCF6BF3E7BE /* Extension in Resources */,
+				9F4087DD661A9ED54BA22671 /* FirefoxExtension in Resources */,
+				209D506AF6816A960A54A4E5 /* apply-blocklist.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC0464362FF87A682ABF4BBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C799F549DA826225E5DF907 /* BlockerHelper.swift in Sources */,
+				6F6B96E9426C5D4E3480F833 /* BlockerModel.swift in Sources */,
+				3A761D04CEC38BCD1D2CAB73 /* BrowserExtension.swift in Sources */,
+				433477A1DD64C104788D57C9 /* BrowserRestarter.swift in Sources */,
+				30D80980A5F470E0B22EBF9F /* ContentView.swift in Sources */,
+				F00F63AF159D39C797455C72 /* DisciplinedApp.swift in Sources */,
+				D4BDF9884F25B7A78DF93AB9 /* Domain.swift in Sources */,
+				88D6D7FF044F5636AD26DFE5 /* Entry.swift in Sources */,
+				1EDC567D7212BE8F69F42DF8 /* NativeHost.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		03C9C82E931DDE57C7F8715B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Disciplined;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.disciplined.mac;
+				PRODUCT_NAME = Disciplined;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8EA85FB38EB082173439AF34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		93A75D60AC9B6739E5BF6AC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Disciplined;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.disciplined.mac;
+				PRODUCT_NAME = Disciplined;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B64137A6DEE46DE7EEA1D2BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65519E6865D2097E23F7ECDE /* Build configuration list for PBXProject "Disciplined" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B64137A6DEE46DE7EEA1D2BF /* Debug */,
+				8EA85FB38EB082173439AF34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F344F259290EED32F8DE9401 /* Build configuration list for PBXNativeTarget "Disciplined" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03C9C82E931DDE57C7F8715B /* Debug */,
+				93A75D60AC9B6739E5BF6AC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E5179050A7E5DA4CA593F933 /* Project object */;
+}
