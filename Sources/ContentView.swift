@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(BlockerModel.self) private var model
+    @AppStorage(AppTheme.key) private var theme = AppTheme.indigo
 
     var body: some View {
         Group {
@@ -11,11 +12,11 @@ struct ContentView: View {
                 SetupView()
             }
         }
-        .frame(width: 380)
+        .frame(width: 440)
         .frame(minHeight: 480, idealHeight: 520)
         .background(.background)
         // The app's color, for every control (and sheets and popovers, which inherit it).
-        .tint(.indigo)
+        .tint(theme.color)
         .animation(.smooth(duration: 0.25), value: model.helperInstalled)
     }
 }
@@ -24,20 +25,30 @@ struct ContentView: View {
 
 private struct MainView: View {
     @Environment(BlockerModel.self) private var model
+    @AppStorage(SiteListPrivacy.hideKey) private var hideList = true
+    @AppStorage(SiteListPrivacy.authenticateKey) private var authenticate = false
+    /// Never saved, so the window always opens with the list hidden.
+    @State private var revealed = false
+
+    private var listHidden: Bool { hideList && !revealed }
 
     var body: some View {
         VStack(spacing: 0) {
+            // The field and list boxes sit 20pt in; the header lines up with what's inside them
+            // (the + and the site icons on the left, the remove buttons on the right).
             Header()
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 30)
                 .padding(.top, 36)
                 .padding(.bottom, 20)
 
-            AddField()
+            AddField(listHidden: listHidden)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
 
             if model.domains.isEmpty {
                 EmptyState()
+            } else if listHidden {
+                HiddenList(count: model.domains.count, authenticate: authenticate, onShow: show)
             } else {
                 DomainList()
             }
@@ -55,31 +66,62 @@ private struct MainView: View {
                 ExtensionFooter()
                     .layoutPriority(1)
                 Spacer(minLength: 0)
-                SettingsButton()
+                if hideList && !model.domains.isEmpty {
+                    Button {
+                        if revealed { hide() } else { show() }
+                    } label: {
+                        FooterIcon(title: revealed ? "Hide Sites" : "Show Sites",
+                                   systemImage: revealed ? "eye.slash" : "eye")
+                    }
+                    .buttonStyle(.plain)
+                }
+                SettingsLink {
+                    FooterIcon(title: "Settings", systemImage: "gearshape")
+                }
+                .buttonStyle(.plain)
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
         }
+        .onReceive(SiteListPrivacy.hideTriggers) { _ in hide() }
+        .onDisappear { revealed = false }
+    }
+
+    private func show() {
+        guard authenticate else {
+            withAnimation(.smooth) { revealed = true }
+            return
+        }
+        Task {
+            guard await SiteListPrivacy.authenticate() else { return }
+            withAnimation(.smooth) { revealed = true }
+        }
+    }
+
+    private func hide() {
+        guard revealed else { return }
+        withAnimation(.smooth) { revealed = false }
     }
 }
 
-private struct SettingsButton: View {
+/// An icon-only footer button's label, highlighted on hover.
+private struct FooterIcon: View {
+    let title: LocalizedStringKey
+    let systemImage: String
     @State private var hovering = false
 
     var body: some View {
-        SettingsLink {
-            Label("Settings", systemImage: "gearshape")
-                .labelStyle(.iconOnly)
-                .font(.system(size: 13))
-                .foregroundStyle(.secondary)
-                .frame(width: 32, height: 32)
-                .background(hovering ? AnyShapeStyle(.quaternary.opacity(0.5)) : AnyShapeStyle(.clear),
-                            in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .onHover { hovering = $0 }
-        .help("Settings")
+        Label(title, systemImage: systemImage)
+            .labelStyle(.iconOnly)
+            .font(.system(size: 13))
+            .foregroundStyle(.secondary)
+            .contentTransition(.symbolEffect(.replace))
+            .frame(width: 32, height: 32)
+            .background(hovering ? AnyShapeStyle(.quaternary.opacity(0.5)) : AnyShapeStyle(.clear),
+                        in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .contentShape(Rectangle())
+            .onHover { hovering = $0 }
+            .help(title)
     }
 }
 
@@ -118,21 +160,23 @@ private struct BrowserStatus: Identifiable {
     var needsAction: Bool { gecko?.needsRestart ?? !connected }
 
     var detail: String {
-        guard let gecko else { return connected ? "Connected" : "Not connected" }
+        guard let gecko else { return connected ? String(localized: "Connected") : String(localized: "Not connected") }
         switch gecko.browser.mode {
         case .extension:
-            if gecko.connected { return "Connected" }
-            return gecko.isRunning ? "Restart to connect" : "Connects when opened"
+            if gecko.connected { return String(localized: "Connected") }
+            return gecko.isRunning ? String(localized: "Restart to connect") : String(localized: "Connects when opened")
         case .filter:
             // Release Firefox only installs extensions signed by Mozilla, so it gets the list at startup.
-            return gecko.needsRestart ? "Restart to apply changes" : "Blocks via policy, updated on restart"
+            return gecko.needsRestart ? String(localized: "Restart to apply changes") : String(localized: "Blocks via policy, updated on restart")
         }
     }
 
     /// One-line summary when this is the only browser that needs attention.
     var hint: String {
-        guard let gecko else { return "Set up \(browser.name) to connect" }
-        return gecko.browser.mode == .filter ? "Restart \(browser.name) to apply changes" : "Restart \(browser.name) to connect"
+        guard let gecko else { return String(localized: "Set up \(browser.name) to connect") }
+        return gecko.browser.mode == .filter
+            ? String(localized: "Restart \(browser.name) to apply changes")
+            : String(localized: "Restart \(browser.name) to connect")
     }
 }
 
@@ -198,11 +242,13 @@ private struct ExtensionFooter: View {
     private func summary(browsers: [BrowserStatus], pending: [BrowserStatus]) -> String {
         switch pending.count {
         case 0:
-            browsers.count == 1 ? "Connected to \(browsers[0].browser.name)" : "Connected to \(browsers.count) browsers"
+            browsers.count == 1
+                ? String(localized: "Connected to \(browsers[0].browser.name)")
+                : String(localized: "Connected to \(browsers.count) browsers")
         case 1:
             pending[0].hint
         default:
-            "\(pending.count) browsers need attention"
+            String(localized: "\(pending.count) browsers need attention")
         }
     }
 }
@@ -220,7 +266,7 @@ private struct BrowserIconStack: View {
                     .opacity(status.connected ? 1 : 0.45)
             }
             if browsers.count > limit {
-                Text("+\(browsers.count - limit)")
+                Text(verbatim: "+\(browsers.count - limit)")
                     .font(.system(size: 9, weight: .semibold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .frame(width: 18, height: 18)
@@ -313,6 +359,7 @@ private struct BrowserRow: View {
 
 private struct ExtensionSetupView: View {
     @Environment(BlockerModel.self) private var model
+    @AppStorage(AppTheme.key) private var theme = AppTheme.indigo
     @Environment(\.dismiss) private var dismiss
     @State private var copied = false
 
@@ -321,7 +368,7 @@ private struct ExtensionSetupView: View {
             VStack(spacing: 10) {
                 Image(systemName: model.chromeConnected ? "checkmark.circle.fill" : "puzzlepiece.extension.fill")
                     .font(.system(size: 40, weight: .light))
-                    .foregroundStyle(model.chromeConnected ? AnyShapeStyle(.green.gradient) : AnyShapeStyle(.indigo.gradient))
+                    .foregroundStyle(model.chromeConnected ? AnyShapeStyle(.green.gradient) : AnyShapeStyle(theme.color.gradient))
                     .contentTransition(.symbolEffect(.replace))
                     .frame(height: 48)
                 Text("Add to \(BrowserExtension.chromiumBrowser?.name ?? "Chrome")")
@@ -333,7 +380,7 @@ private struct ExtensionSetupView: View {
 
             VStack(spacing: 0) {
                 StepRow(number: 1, title: "Open chrome://extensions") {
-                    Button(copied ? "Copied" : "Copy") {
+                    Button(copied ? String(localized: "Copied") : String(localized: "Copy")) {
                         NSPasteboard.general.clearContents()
                         NSPasteboard.general.setString("chrome://extensions", forType: .string)
                         copied = true
@@ -381,16 +428,16 @@ private struct ExtensionSetupView: View {
 
 private struct StepRow<Accessory: View>: View {
     let number: Int
-    let title: String
+    let title: LocalizedStringKey
     @ViewBuilder let accessory: Accessory
 
     var body: some View {
         HStack(spacing: 10) {
-            Text("\(number)")
+            Text(verbatim: "\(number)")
                 .font(.system(size: 11, weight: .bold, design: .rounded))
-                .foregroundStyle(.indigo)
+                .foregroundStyle(.tint)
                 .frame(width: 20, height: 20)
-                .background(.indigo.opacity(0.15), in: Circle())
+                .background(.tint.opacity(0.15), in: Circle())
             Text(title)
                 .font(.system(size: 13))
                 .lineLimit(1)
@@ -450,33 +497,58 @@ private struct StatusLabel: View {
 }
 
 private struct AddField: View {
+    /// The new row won't show, so the field confirms the add itself.
+    let listHidden: Bool
     @Environment(BlockerModel.self) private var model
+    @AppStorage(Favicon.showKey) private var showIcons = true
+    @AppStorage(Favicon.sourceKey) private var source = Favicon.Source.google
     @State private var text = ""
+    @State private var justAdded = false
+    @State private var confirmation: Task<Void, Never>?
+    /// The typed site's icon. It stays while the user keeps typing the same name, so it changes once per pause instead of flickering.
+    @State private var favicon: (domain: String, image: NSImage)?
     @State private var shake = false
     @FocusState private var focused: Bool
 
+    private struct IconLookup: Equatable {
+        let domain: String?
+        let source: Favicon.Source?
+    }
+
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: "plus")
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(.tertiary)
+        let domain = Domain.normalize(text)
+        let added = domain.map(model.domains.contains) ?? false
+        // Spacing and padding match DomainRow, so the icon and the text line up with the icons and names below.
+        HStack(spacing: 12) {
+            AddFieldIcon(isEmpty: text.isEmpty, favicon: favicon?.image)
             TextField("Add a website", text: $text)
                 .textFieldStyle(.plain)
                 .font(.system(size: 14))
                 .focused($focused)
                 .onSubmit(submit)
-            if !text.isEmpty {
+                .onExitCommand { withAnimation(.smooth) { text = "" } }
+            if added {
+                Text("Already added")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .transition(.opacity)
+            } else if justAdded && text.isEmpty {
+                Label("Added", systemImage: "checkmark")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .transition(.opacity)
+            } else if !text.isEmpty {
                 Button(action: submit) {
                     Image(systemName: "arrow.up.circle.fill")
                         .font(.system(size: 18))
-                        .foregroundStyle(.indigo)
+                        .foregroundStyle(domain == nil ? AnyShapeStyle(.tertiary) : AnyShapeStyle(.tint))
                 }
                 .buttonStyle(.plain)
                 .transition(.scale.combined(with: .opacity))
             }
         }
-        .padding(.horizontal, 12)
-        .frame(height: 38)
+        .padding(.horizontal, 10)
+        .frame(height: 40)
         .background(.quaternary.opacity(0.6), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -484,19 +556,81 @@ private struct AddField: View {
         )
         .offset(x: shake ? 6 : 0)
         .animation(.snappy(duration: 0.15), value: text.isEmpty)
+        .animation(.smooth(duration: 0.2), value: domain == nil)
+        .animation(.smooth(duration: 0.2), value: added)
         .onAppear { focused = true }
+        .task(id: IconLookup(domain: domain, source: showIcons ? source : nil)) {
+            await lookUpIcon(domain: domain, source: showIcons ? source : nil)
+        }
+    }
+
+    /// Waits for a pause in typing before asking the icon source, so it isn't sent every partial name.
+    private func lookUpIcon(domain: String?, source: Favicon.Source?) async {
+        guard let domain, let source else {
+            withAnimation(.smooth) { favicon = nil }
+            return
+        }
+        if let image = Favicon.cached(domain, from: source) {
+            withAnimation(.smooth) { favicon = (domain, image) }
+            return
+        }
+        // A different site (pasted, or retyped from scratch) shouldn't show the last one's icon while it loads.
+        if let shown = favicon?.domain, !domain.hasPrefix(shown), !shown.hasPrefix(domain) {
+            withAnimation(.smooth) { favicon = nil }
+        }
+        guard (try? await Task.sleep(for: .milliseconds(350))) != nil else { return }
+        let image = await Favicon.load(domain, from: source)
+        guard !Task.isCancelled else { return }
+        withAnimation(.smooth) { favicon = image.map { (domain, $0) } }
     }
 
     private func submit() {
         guard !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         if model.add(text) {
-            withAnimation(.smooth) { text = "" }
+            withAnimation(.smooth) {
+                text = ""
+                justAdded = listHidden
+            }
+            confirmation?.cancel()
+            confirmation = Task {
+                try? await Task.sleep(for: .seconds(1.5))
+                guard !Task.isCancelled else { return }
+                withAnimation(.smooth) { justAdded = false }
+            }
         } else {
             withAnimation(.spring(response: 0.15, dampingFraction: 0.2)) { shake = true }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                 withAnimation(.smooth) { shake = false }
             }
         }
+    }
+}
+
+/// An empty slot that turns into the typed site's icon once one is found.
+private struct AddFieldIcon: View {
+    let isEmpty: Bool
+    let favicon: NSImage?
+
+    var body: some View {
+        ZStack {
+            if let favicon {
+                FaviconTile(image: favicon)
+                    .id(ObjectIdentifier(favicon))
+                    .transition(.scale(scale: 0.6).combined(with: .opacity))
+            } else {
+                Image(systemName: isEmpty ? "plus" : "globe")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.tertiary)
+                    .contentTransition(.symbolEffect(.replace))
+                    .frame(width: 28, height: 28)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 7, style: .continuous)
+                            .strokeBorder(.tertiary, style: StrokeStyle(lineWidth: 1, dash: [3, 2.5]))
+                    )
+                    .transition(.opacity)
+            }
+        }
+        .frame(width: 28, height: 28)
     }
 }
 
@@ -513,7 +647,7 @@ private struct DomainList: View {
                     .transition(.move(edge: .top).combined(with: .opacity))
                 }
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 20)
             .padding(.bottom, 12)
             .animation(.smooth, value: model.domains)
         }
@@ -559,8 +693,24 @@ private struct DomainRow: View {
     }
 }
 
-/// The site's favicon on a white tile (so dark icons stay visible in dark mode), or its first letter
-/// if icons are off, until the favicon loads, or if the source has none.
+/// A favicon on a white tile, so dark icons stay visible in dark mode.
+private struct FaviconTile: View {
+    let image: NSImage
+    private let shape = RoundedRectangle(cornerRadius: 7, style: .continuous)
+
+    var body: some View {
+        Image(nsImage: image)
+            .resizable()
+            .interpolation(.high)
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 18, height: 18)
+            .frame(width: 28, height: 28)
+            .background(.white, in: shape)
+            .overlay(shape.strokeBorder(.black.opacity(0.08), lineWidth: 0.5))
+    }
+}
+
+/// The site's favicon, or its first letter if icons are off, until the favicon loads, or if the source has none.
 private struct SiteIcon: View {
     let domain: String
     @AppStorage(Favicon.showKey) private var showIcons = true
@@ -568,22 +718,13 @@ private struct SiteIcon: View {
     /// Icons fetched while this row was showing.
     @State private var loaded: [Favicon.Source: NSImage] = [:]
 
-    private let shape = RoundedRectangle(cornerRadius: 7, style: .continuous)
-
     var body: some View {
         let source = showIcons ? self.source : nil
         // Reading the cache here keeps already-fetched icons from flashing the letter first.
         let favicon = source.flatMap { loaded[$0] ?? Favicon.cached(domain, from: $0) }
         ZStack {
             if let favicon {
-                Image(nsImage: favicon)
-                    .resizable()
-                    .interpolation(.high)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 18, height: 18)
-                    .frame(width: 28, height: 28)
-                    .background(.white, in: shape)
-                    .overlay(shape.strokeBorder(.black.opacity(0.08), lineWidth: 0.5))
+                FaviconTile(image: favicon)
                     .id(source)
                     .transition(.opacity)
             } else {
@@ -591,7 +732,7 @@ private struct SiteIcon: View {
                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white)
                     .frame(width: 28, height: 28)
-                    .background(tint.gradient, in: shape)
+                    .background(tint.gradient, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
                     .transition(.opacity)
             }
         }
@@ -607,6 +748,39 @@ private struct SiteIcon: View {
         let palette: [Color] = [.indigo, .pink, .orange, .teal, .purple, .blue, .mint, .red]
         let hash = domain.unicodeScalars.reduce(0) { ($0 &* 31 &+ Int($1.value)) & 0xFFFF }
         return palette[hash % palette.count]
+    }
+}
+
+/// Stands in for the list until the user asks to see it.
+private struct HiddenList: View {
+    let count: Int
+    let authenticate: Bool
+    let onShow: () -> Void
+
+    var body: some View {
+        VStack(spacing: 10) {
+            Spacer()
+            Image(systemName: "eye.slash")
+                .font(.system(size: 36, weight: .light))
+                .foregroundStyle(.tertiary)
+            Text("\(count) sites hidden")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .contentTransition(.numericText())
+                .animation(.smooth, value: count)
+            Button(action: onShow) {
+                if authenticate {
+                    Label("Show Sites", systemImage: "touchid")
+                } else {
+                    Text("Show Sites")
+                }
+            }
+            .padding(.top, 4)
+            Spacer()
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .transition(.opacity)
     }
 }
 

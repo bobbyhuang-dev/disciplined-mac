@@ -1,0 +1,7 @@
+{
+  "extensionDescription": { "message": "屏蔽你在 Disciplined 列表中的网站。" },
+  "pageLanguage": { "message": "zh-Hans" },
+  "blockedTitle": { "message": "已屏蔽" },
+  "thisSiteIsBlocked": { "message": "此网站已被屏蔽" },
+  "keepingYouFocused": { "message": "Disciplined 正在帮你保持专注。" }
+}

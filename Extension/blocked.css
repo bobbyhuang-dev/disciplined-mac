@@ -2,7 +2,8 @@
   --bg: #f7f7fa;
   --text: #1c1c1e;
   --secondary: #6e6e73;
-  --accent: #5856d6;
+  /* blocked.js sets --accent-light and --accent-dark to the app's accent color; these are its indigo. */
+  --accent: var(--accent-light, #6155f5);
   color-scheme: light dark;
 }
 
@@ -11,7 +12,7 @@
     --bg: #1c1c1e;
     --text: #f2f2f7;
     --secondary: #98989d;
-    --accent: #7d7aff;
+    --accent: var(--accent-dark, #6d7cff);
   }
 }
 
@@ -31,6 +32,12 @@ body {
 main {
   padding: 24px;
   text-align: center;
+  transition: opacity 0.2s;
+}
+
+/* Set by blocked.js until it has the accent color. */
+.loading main {
+  opacity: 0;
 }
 
 .shield {

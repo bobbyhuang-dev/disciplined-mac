@@ -1,0 +1,835 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ didn't quit. Close any open dialogs in it and try again." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 未能退出。请关闭其中打开的对话框后重试。"
+          }
+        }
+      }
+    },
+    "%lld browsers need attention" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld 个浏览器需要处理"
+          }
+        }
+      }
+    },
+    "%lld sites hidden" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld site hidden"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sites hidden"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已隐藏 %lld 个网站"
+          }
+        }
+      }
+    },
+    "Accent color" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "强调色"
+          }
+        }
+      }
+    },
+    "Add a website" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加网站"
+          }
+        }
+      }
+    },
+    "Add to %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加到 %@"
+          }
+        }
+      }
+    },
+    "Added" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已添加"
+          }
+        }
+      }
+    },
+    "Allow Disciplined in Login Items so it can open at login." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在“登录项”中允许 Disciplined，以便登录时打开。"
+          }
+        }
+      }
+    },
+    "Allow Disciplined to block sites\nin every browser." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许 Disciplined 在所有浏览器中\n屏蔽网站。"
+          }
+        }
+      }
+    },
+    "Already added" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已添加"
+          }
+        }
+      }
+    },
+    "Also colors the page browsers show for blocked sites." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "也会用于浏览器中的网站拦截页面。"
+          }
+        }
+      }
+    },
+    "Applying…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在应用…"
+          }
+        }
+      }
+    },
+    "Block Websites" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "屏蔽网站"
+          }
+        }
+      }
+    },
+    "Blocking %lld sites" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Blocking %lld site"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Blocking %lld sites"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在屏蔽 %lld 个网站"
+          }
+        }
+      }
+    },
+    "Blocks sites even through VPNs." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即使使用 VPN 也能屏蔽网站。"
+          }
+        }
+      }
+    },
+    "Blocks via policy, updated on restart" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过策略屏蔽，重新启动后更新"
+          }
+        }
+      }
+    },
+    "Blue" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蓝色"
+          }
+        }
+      }
+    },
+    "Browser Extensions" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "浏览器扩展"
+          }
+        }
+      }
+    },
+    "Cancelled." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已取消。"
+          }
+        }
+      }
+    },
+    "Connected" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接"
+          }
+        }
+      }
+    },
+    "Connected to %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接到 %@"
+          }
+        }
+      }
+    },
+    "Connected to %lld browsers" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接到 %lld 个浏览器"
+          }
+        }
+      }
+    },
+    "Connects when opened" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开后自动连接"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
+          }
+        }
+      }
+    },
+    "Copied" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已拷贝"
+          }
+        }
+      }
+    },
+    "Copy" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拷贝"
+          }
+        }
+      }
+    },
+    "Disciplined" : {
+      "shouldTranslate" : false
+    },
+    "Disciplined will switch languages when it relaunches." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disciplined 重新启动后将切换语言。"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        }
+      }
+    },
+    "Drag the folder in" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将文件夹拖入"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通用"
+          }
+        }
+      }
+    },
+    "Helper script missing from app bundle." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用包中缺少辅助脚本。"
+          }
+        }
+      }
+    },
+    "Hide Sites" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐藏网站"
+          }
+        }
+      }
+    },
+    "Hide site list" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐藏网站列表"
+          }
+        }
+      }
+    },
+    "Indigo" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "靛蓝色"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语言"
+          }
+        }
+      }
+    },
+    "No websites yet" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有网站"
+          }
+        }
+      }
+    },
+    "Not connected" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未连接"
+          }
+        }
+      }
+    },
+    "Off" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已关闭"
+          }
+        }
+      }
+    },
+    "One-time setup" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性配置"
+          }
+        }
+      }
+    },
+    "Open Disciplined" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开 Disciplined"
+          }
+        }
+      }
+    },
+    "Open Login Items" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开登录项"
+          }
+        }
+      }
+    },
+    "Open at login" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录时打开"
+          }
+        }
+      }
+    },
+    "Open chrome://extensions" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开 chrome://extensions"
+          }
+        }
+      }
+    },
+    "Orange" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "橙色"
+          }
+        }
+      }
+    },
+    "Pink" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "粉色"
+          }
+        }
+      }
+    },
+    "Privacy" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私"
+          }
+        }
+      }
+    },
+    "Quit Disciplined" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出 Disciplined"
+          }
+        }
+      }
+    },
+    "Quits and reopens %@ with your tabs restored." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出并重新打开 %@，恢复你的标签页。"
+          }
+        }
+      }
+    },
+    "Relaunch Now" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即重新启动"
+          }
+        }
+      }
+    },
+    "Remove" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除"
+          }
+        }
+      }
+    },
+    "Remove Blocker Helper…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除屏蔽辅助程序…"
+          }
+        }
+      }
+    },
+    "Require Touch ID or password to show" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示前需要触控 ID 或密码"
+          }
+        }
+      }
+    },
+    "Restart" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新启动"
+          }
+        }
+      }
+    },
+    "Restart %@ to apply changes" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新启动 %@ 以应用更改"
+          }
+        }
+      }
+    },
+    "Restart %@ to connect" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新启动 %@ 以连接"
+          }
+        }
+      }
+    },
+    "Restart to apply changes" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新启动以应用更改"
+          }
+        }
+      }
+    },
+    "Restart to connect" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新启动以连接"
+          }
+        }
+      }
+    },
+    "Set Up…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配置…"
+          }
+        }
+      }
+    },
+    "Set up %@ to connect" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配置 %@ 以连接"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置"
+          }
+        }
+      }
+    },
+    "Settings…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置…"
+          }
+        }
+      }
+    },
+    "Setup needed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要配置"
+          }
+        }
+      }
+    },
+    "Show Folder" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示文件夹"
+          }
+        }
+      }
+    },
+    "Show Sites" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示网站"
+          }
+        }
+      }
+    },
+    "Show site icons" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示网站图标"
+          }
+        }
+      }
+    },
+    "Site Icons" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网站图标"
+          }
+        }
+      }
+    },
+    "Site List" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网站列表"
+          }
+        }
+      }
+    },
+    "Site names are sent to %@ to find their icons." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网站名称会发送给 %@ 以获取图标。"
+          }
+        }
+      }
+    },
+    "Sites show only when you ask, and hide again when you switch apps or lock your Mac." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网站仅在你需要时显示，切换应用或锁定 Mac 后会再次隐藏。"
+          }
+        }
+      }
+    },
+    "Sites show their first letter." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网站将显示其首字母。"
+          }
+        }
+      }
+    },
+    "Something went wrong." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出了点问题。"
+          }
+        }
+      }
+    },
+    "Source" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "来源"
+          }
+        }
+      }
+    },
+    "System Accent" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "系统强调色"
+          }
+        }
+      }
+    },
+    "System Language" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "系统语言"
+          }
+        }
+      }
+    },
+    "Teal" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "青色"
+          }
+        }
+      }
+    },
+    "Turn on Developer mode" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启开发者模式"
+          }
+        }
+      }
+    },
+    "Waiting for %@…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在等待 %@…"
+          }
+        }
+      }
+    },
+    "You'll be asked for your password once." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "只需输入一次密码。"
+          }
+        }
+      }
+    },
+    "show your blocked sites" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示你屏蔽的网站"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

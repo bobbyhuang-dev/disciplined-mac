@@ -1,0 +1,7 @@
+{
+  "extensionDescription": { "message": "Blocks the websites on your Disciplined list." },
+  "pageLanguage": { "message": "en", "description": "The blocked page's lang attribute." },
+  "blockedTitle": { "message": "Blocked" },
+  "thisSiteIsBlocked": { "message": "This site is blocked" },
+  "keepingYouFocused": { "message": "Disciplined is keeping you focused." }
+}

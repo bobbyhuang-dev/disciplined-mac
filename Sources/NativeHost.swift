@@ -1,7 +1,7 @@
 import Foundation
 
 /// Native messaging host for the browser extensions. The browser launches this binary while its
-/// extension is connected; it streams the blocklist to the extension.
+/// extension is connected; it streams the blocklist and the app's accent color to the extension.
 ///
 /// Protocol: each message is a 32-bit native-endian length followed by that many bytes of UTF-8 JSON.
 enum NativeHost {
@@ -34,12 +34,18 @@ enum NativeHost {
             exit(0)
         }
 
-        var lastSent: [String]?
+        var lastDomains: [String]?
+        var lastAccent: [String: String]?
         while true {
             let domains = currentDomains()
-            if domains != lastSent {
+            if domains != lastDomains {
                 send(["domains": domains])
-                lastSent = domains
+                lastDomains = domains
+            }
+            let accent = AppTheme.savedColors
+            if accent != lastAccent {
+                send(["accent": accent])
+                lastAccent = accent
             }
             BrowserExtension.markConnected(browser)
             sleep(1)

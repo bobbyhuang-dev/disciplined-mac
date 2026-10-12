@@ -53,10 +53,11 @@ final class BlockerModel {
 
     var statusText: String {
         switch status {
-        case .active: domains.count == 1 ? "Blocking 1 site" : "Blocking \(domains.count) sites"
-        case .applying: "Applying…"
-        case .needsSetup: "Setup needed"
-        case .off: "Off"
+        // The catalog has English's singular form.
+        case .active: String(localized: "Blocking \(domains.count) sites")
+        case .applying: String(localized: "Applying…")
+        case .needsSetup: String(localized: "Setup needed")
+        case .off: String(localized: "Off")
         }
     }
 
@@ -169,6 +170,7 @@ final class BlockerModel {
             try? BrowserExtension.writeHostManifests(gecko: gecko)
         }
         let geckoStatuses = gecko.map(Self.status(of:))
+        AppTheme.saveColors()
         // Only assign on change so the 1s poll doesn't redraw the UI.
         if installed != helperInstalled { helperInstalled = installed }
         if applied != appliedHosts { appliedHosts = applied }

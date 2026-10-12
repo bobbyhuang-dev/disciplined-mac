@@ -81,7 +81,11 @@ enum BrowserExtension {
     /// Reads the helper's browsers.tsv: "bundle-id<TAB>mode<TAB>profile-folder<TAB>app-path" per line.
     static func geckoBrowsers() -> [GeckoBrowser] {
         guard let text = try? String(contentsOfFile: BlockerHelper.browsersPath, encoding: .utf8) else { return [] }
-        return text.split(separator: "\n").compactMap { line in
+        return geckoBrowsers(in: text)
+    }
+
+    static func geckoBrowsers(in text: String) -> [GeckoBrowser] {
+        text.split(separator: "\n").compactMap { line in
             let fields = line.split(separator: "\t", omittingEmptySubsequences: false).map(String.init)
             guard fields.count == 4, let mode = GeckoBrowser.Mode(rawValue: fields[1]) else { return nil }
             return GeckoBrowser(bundleID: fields[0], mode: mode, profileFolder: fields[2],

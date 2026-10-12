@@ -1,0 +1,29 @@
+# The same tests as the pre-commit hook (Tests/run.sh), for pushes and pull requests.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # The stable image's default Xcode (26.x) is enough: the test target doesn't build the app.
+    runs-on: macos-26
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - name: Show tool versions
+        run: |
+          xcodebuild -version
+          node --version
+      - name: Run tests
+        run: Tests/run.sh

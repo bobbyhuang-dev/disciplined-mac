@@ -1,4 +1,5 @@
 import AppKit
+import CryptoKit
 
 /// Site icons for the domain list. A blocked site resolves to 0.0.0.0, so icons come from a favicon
 /// service the user picks in Settings instead of the site itself, and are cached on disk once found.
@@ -34,8 +35,18 @@ enum Favicon {
     /// Lookups the source had no icon for; not asked again until the next launch.
     private static var missing: Set<String> = []
 
-    private static let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        .appendingPathComponent("com.disciplined.mac/Favicons", isDirectory: true)
+    private static let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        .appendingPathComponent("com.disciplined.mac", isDirectory: true)
+    private static let folder = caches.appendingPathComponent("SiteIcons", isDirectory: true)
+
+    /// Ephemeral, because each request names a site and the shared URL cache would keep it on disk.
+    private static let session = URLSession(configuration: .ephemeral)
+
+    /// Older builds named each cached icon after its site, and let the shared URL cache keep every request.
+    static func removeLegacyCaches() {
+        try? FileManager.default.removeItem(at: caches.appendingPathComponent("Favicons", isDirectory: true))
+        URLCache.shared.removeAllCachedResponses()
+    }
 
     /// The icon if it's in memory or on disk, without touching the network.
     static func cached(_ domain: String, from source: Source) -> NSImage? {
@@ -52,7 +63,7 @@ enum Favicon {
         let key = key(domain, source)
         if missing.contains(key) { return nil }
         // Offline, or the row went away mid-request: try again next time.
-        guard let (data, response) = try? await URLSession.shared.data(from: source.url(for: domain)) else { return nil }
+        guard let (data, response) = try? await session.data(from: source.url(for: domain)) else { return nil }
         guard (response as? HTTPURLResponse)?.statusCode == 200, let image = NSImage(data: data), image.isValid else {
             missing.insert(key)
             return nil
@@ -64,8 +75,9 @@ enum Favicon {
         return image
     }
 
-    /// Also the icon's path in the cache folder. Domains are validated by `Domain.normalize`, so they're safe as file names.
+    /// Also the icon's path in the cache folder. The domain is hashed so the folder doesn't spell out the list.
     private static func key(_ domain: String, _ source: Source) -> String {
-        "\(source.rawValue)/\(domain)"
+        let hash = SHA256.hash(data: Data(domain.utf8)).map { String(format: "%02x", $0) }.joined()
+        return "\(source.rawValue)/\(hash)"
     }
 }

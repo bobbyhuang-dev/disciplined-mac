@@ -9,7 +9,7 @@ enum BrowserRestarter {
 
         var errorDescription: String? {
             switch self {
-            case .didNotQuit(let name): "\(name) didn't quit. Close any open dialogs in it and try again."
+            case .didNotQuit(let name): String(localized: "\(name) didn't quit. Close any open dialogs in it and try again.")
             }
         }
     }

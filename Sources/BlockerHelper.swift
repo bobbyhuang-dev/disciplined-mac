@@ -42,6 +42,11 @@ enum BlockerHelper {
     /// Hostnames currently blocked by our section of /etc/hosts.
     static func appliedHosts() -> Set<String> {
         guard let text = try? String(contentsOfFile: hostsPath, encoding: .utf8) else { return [] }
+        return appliedHosts(in: text)
+    }
+
+    /// Hostnames blocked by our section of a hosts file's contents.
+    static func appliedHosts(in text: String) -> Set<String> {
         var inSection = false
         var hosts = Set<String>()
         for line in text.split(separator: "\n", omittingEmptySubsequences: false) {
@@ -63,7 +68,7 @@ enum BlockerHelper {
     // MARK: - Install / uninstall (asks for an admin password)
 
     static func install() async throws {
-        guard let script = bundledScriptURL else { throw HelperError.message("Helper script missing from app bundle.") }
+        guard let script = bundledScriptURL else { throw HelperError.message(String(localized: "Helper script missing from app bundle.")) }
         if !FileManager.default.fileExists(atPath: blocklistURL.path) { try writeBlocklist([]) }
 
         let plist: [String: Any] = [
@@ -137,8 +142,8 @@ enum BlockerHelper {
 
         var errorDescription: String? {
             switch self {
-            case .cancelled: "Cancelled."
-            case .message(let m): m.isEmpty ? "Something went wrong." : m
+            case .cancelled: String(localized: "Cancelled.")
+            case .message(let m): m.isEmpty ? String(localized: "Something went wrong.") : m
             }
         }
     }

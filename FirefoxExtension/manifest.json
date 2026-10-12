@@ -2,12 +2,13 @@
   "manifest_version": 2,
   "name": "Disciplined",
   "version": "1.0",
-  "description": "Blocks the websites on your Disciplined list.",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "icons": { "16": "icon-16.png", "32": "icon-32.png", "48": "icon-48.png", "128": "icon-128.png" },
   "browser_specific_settings": {
     "gecko": { "id": "disciplined@disciplined.mac", "strict_min_version": "128.0" }
   },
-  "permissions": ["declarativeNetRequest", "nativeMessaging", "alarms", "<all_urls>"],
+  "permissions": ["declarativeNetRequest", "nativeMessaging", "alarms", "storage", "<all_urls>"],
   "background": { "scripts": ["background.js"] },
   "web_accessible_resources": ["blocked.html"]
 }

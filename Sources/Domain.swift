@@ -2,7 +2,7 @@ import Foundation
 
 enum Domain {
     // Must match DOMAIN_RE in apply-blocklist.sh.
-    private static let pattern = #"^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$"#
+    static let pattern = #"^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$"#
 
     /// Turns whatever the user typed ("https://www.YouTube.com/watch?v=1") into a bare domain ("youtube.com").
     static func normalize(_ input: String) -> String? {

@@ -3,6 +3,10 @@ import SwiftUI
 struct DisciplinedApp: App {
     @State private var model = BlockerModel()
 
+    init() {
+        Favicon.removeLegacyCaches()
+    }
+
     var body: some Scene {
         Window("Disciplined", id: "main") {
             ContentView()
@@ -10,7 +14,7 @@ struct DisciplinedApp: App {
         }
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
-        .defaultSize(width: 380, height: 520)
+        .defaultSize(width: 440, height: 520)
         .commands {
             CommandGroup(after: .appSettings) {
                 Button("Remove Blocker Helper…") {
@@ -30,7 +34,7 @@ struct DisciplinedApp: App {
             MenuBarMenu()
                 .environment(model)
         } label: {
-            Image(systemName: model.status == .active ? "shield.lefthalf.filled" : "shield")
+            Image(nsImage: model.status == .active ? MenuBarIcon.active : MenuBarIcon.inactive)
         }
         .menuBarExtraStyle(.menu)
     }
